@@ -1,0 +1,41 @@
+<!--
+////////
+//
+// Language Redirection With Memory Storage 
+// Version 1.2 - 16/09/2016
+//
+// Thomas Jule @agoranet
+// t.jule@agoranet.fr
+//
+////////
+-->
+
+<!doctype html>
+<html>
+<head>
+	<script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+	<script src="jquery-1.12.3.min.js"></script>
+	<script type="text/javascript" charset="utf-8">
+	// Wait for device API libraries to load
+    //document.addEventListener("deviceready", onDeviceReady, false);
+	// device APIs are now available
+    //Auto Redirect if variable available in cordova local storage
+    var language = window.localStorage.getItem("region");
+    //function onDeviceReady() {
+	window.onAppear = function() {
+	    if(window.localStorage.getItem("region") == "europe"){window.location.replace("navto://collection/europe");}
+		else if(window.localStorage.getItem("region") == "africa"){window.location.replace("navto://collection/africa");}
+		else if(window.localStorage.getItem("region") == "asia"){window.location.replace("navto://collection/aisa");}
+		else if(window.localStorage.getItem("region") == "oceania"){window.location.replace("navto://collection/oceania");}
+		else{
+			window.location.replace("navto://article/language_selector");
+		}
+	}
+	</script>
+	<meta charset="UTF-8">
+	<title>Language Selector</title>
+    </head>
+<body style="text-align: center; background-color: black;">
+	<img src="loader.gif" style="padding-top: 335px;" width="64" height="64"/>
+</body>
+</html>

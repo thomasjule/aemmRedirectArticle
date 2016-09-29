@@ -1,0 +1,77 @@
+<!--
+////////
+//
+// Language Redirection With Memory Storage 
+// Version 1.2 - 16/09/2016
+//
+// Thomas Jule @agoranet
+// t.jule@agoranet.fr
+//
+////////
+-->
+
+<!doctype html>
+<html>
+<head>
+	<script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+	<script src="jquery-1.12.3.min.js"></script>
+	<script type="text/javascript" charset="utf-8">
+	// Wait for device API libraries to load
+    //document.addEventListener("deviceready", onDeviceReady, false);        
+	// device APIs are now available
+    //Auto Redirect if variable available in cordova local storage
+    var language = window.localStorage.getItem("region");
+    //setTimeout(showUI, 3000);
+    //function onDeviceReady() {
+	window.onAppear = function() {
+	    if(window.localStorage.getItem("region") == "europe"){window.location.replace("navto://collection/europe");}
+		else if(window.localStorage.getItem("region") == "africa"){window.location.replace("navto://collection/africa");}
+		else if(window.localStorage.getItem("region") == "asia"){window.location.replace("navto://collection/aisa");}
+		else if(window.localStorage.getItem("region") == "oceania"){window.location.replace("navto://collection/oceania");}
+		else{
+			   // Eventually display/hide the UI and let them choose
+			   showUI();
+		}
+	}
+	//Set or update current variable region and redirect to good collection
+	function setVariableAndRedirect(region) {
+		if(region == "europe"){
+			   window.localStorage.setItem("region", "europe");
+			   window.location.replace("navto://collection/europe");
+		}
+		else if(region == "africa"){
+			   window.localStorage.setItem("region", "africa");
+			   window.location.replace("navto://collection/africa");
+		}
+		else if(region == "asia"){
+			   window.localStorage.setItem("region", "asia");
+			   window.location.replace("navto://collection/aisa");
+		}
+		else if(region == "oceania"){
+			   window.localStorage.setItem("region", "oceania");
+			   window.location.replace("navto://collection/oceania");
+		}
+	}
+	function showUI(){
+		document.body.style.backgroundImage = "url('bg.jpg')";
+		document.getElementById('loading').style.visibility='hidden';
+		document.getElementById('cont').style.visibility='visible';
+		
+	}
+	</script>
+	<meta charset="UTF-8">
+	<title>Language Selector</title>
+	<link rel="stylesheet" href="styles.css">
+    </head>
+<body>
+	<div class="loading" id="loading">
+		<img src="loader.gif" style="padding-top: 335px;" width="64" height="64"/>
+	</div>
+	<div class="cont" id="cont">
+		<a href="#" class="lien_p1" onclick="setVariableAndRedirect('europe');"><img src="p_1.png" class="un_picto" /></a>
+		<a href="#" class="lien_p2" onclick="setVariableAndRedirect('africa');"><img src="p_2.png" class="un_picto" /></a>
+		<a href="#" class="lien_p3" onclick="setVariableAndRedirect('asia');"><img src="p_3.png" class="un_picto" /></a>
+		<a href="#" class="lien_p4" onclick="setVariableAndRedirect('oceania');"><img src="p_4.png" class="un_picto" /></a>
+	</div>
+</body>
+</html>
